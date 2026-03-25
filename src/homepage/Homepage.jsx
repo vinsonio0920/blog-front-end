@@ -3,7 +3,7 @@ const Homepage = () => {
     <>
       <p>HEy!</p>
     </>
-  )
-}
+  );
+};
 
 export { Homepage };

@@ -6,6 +6,6 @@ const routes = [
     path: "/",
     element: <App />,
   },
-]
+];
 
 export { routes };
