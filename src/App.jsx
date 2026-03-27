@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, Outlet } from "react-router";
 import {
   blenderSvg,
   githubSvg,
@@ -38,7 +38,7 @@ function App() {
           </li>
         </nav>
       </header>
-      <p>This is where the router comes in handy!</p>
+      <Outlet />
       <footer>
         <nav>
           <li>
