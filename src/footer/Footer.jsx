@@ -12,8 +12,9 @@ const Footer = () => {
   return (
     <footer>
       <nav>
-        <ul>
-          <li>
+        <ul className="footer-ul">
+          <li className="social-li">
+            <p className="social-para">See me around!</p>
             <ul className="social-links">
               <li>
                 <Link to="">
@@ -67,9 +68,17 @@ const Footer = () => {
             <ul className="other-links">
               <li>
                 <Link to="/attributions">Attributions</Link>
+              </li>
+              <li>
                 <Link to="/about">About</Link>
+              </li>
+              <li>
                 <Link to="/contact">Contact</Link>
+              </li>
+              <li>
                 <Link to="/roadmap">Roadmap</Link>
+              </li>
+              <li>
                 <Link to="/current">Current Projects</Link>
               </li>
             </ul>
