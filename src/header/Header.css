@@ -1,0 +1,44 @@
+.homepage-header {
+  border-bottom: 1px solid rgb(206, 206, 206);
+}
+
+.homepage-header ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.homepage-header nav {
+  margin: 0.75rem 1rem;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+
+  text-decoration: none;
+}
+
+.logo-svg {
+  width: 2.5rem;
+  margin-right: 0.5rem;
+}
+
+.logo-text {
+  font-family: "bebas_neueregular", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #000;
+}
+
+.burger-menu {
+  border: none;
+  background-color: transparent;
+}
+
+.right-header {
+  display: none !important;
+}
+
+@media (min-width: 600px) {
+}

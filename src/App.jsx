@@ -3,41 +3,16 @@ import {
   blenderSvg,
   githubSvg,
   linkedinSvg,
-  logoSvg,
   robloxSvg,
   stackoverflowSvg,
 } from "./assets";
 import "./App.css";
+import { Header } from "./header/Header";
 
 function App() {
   return (
     <>
-      <header>
-        <nav>
-          <li>
-            <Link to="/">
-              <img src={logoSvg} width="50" alt="Logo SVG" />
-              Vinson Blogs
-            </Link>
-          </li>
-          <li>
-            <ul className="right-header">
-              <li>
-                <Link to="/Journal">Journal</Link>
-              </li>
-              <li>
-                <Link to="/articles">Articles</Link>
-              </li>
-              <li>
-                <Link to="About">About</Link>
-              </li>
-              <li>
-                <Link to="/sign-in">Sign In</Link>
-              </li>
-            </ul>
-          </li>
-        </nav>
-      </header>
+      <Header />
       <Outlet />
       <footer>
         <nav>
