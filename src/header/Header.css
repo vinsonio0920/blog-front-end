@@ -2,14 +2,14 @@
   border-bottom: 1px solid rgb(206, 206, 206);
 }
 
+.homepage-header nav {
+  margin: 0.75rem clamp(1rem, 3vw, 2.5rem);
+}
+
 .homepage-header ul {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.homepage-header nav {
-  margin: 0.75rem 1rem;
 }
 
 .logo-link {
@@ -40,5 +40,25 @@
   display: none !important;
 }
 
+.right-header a {
+  text-decoration: none;
+  color: #000;
+}
+
 @media (min-width: 600px) {
+  .burger-menu {
+    display: none;
+  }
+
+  .right-header {
+    display: flex !important;
+  }
+
+  .right-header a {
+    margin-left: clamp(1rem, 3vw, 2rem);
+  }
+
+  .right-header a:hover {
+    text-decoration: underline;
+  }
 }
