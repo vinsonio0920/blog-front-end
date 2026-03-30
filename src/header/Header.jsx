@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router";
-import "./Header.css";
+import styles from "./Header.module.css";
 import { logoSvg } from "../assets";
 
 const Header = () => {
@@ -11,30 +11,34 @@ const Header = () => {
   }
 
   return (
-    <header className="homepage-header">
+    <header className={styles.homepageHeader}>
       <nav>
         <ul>
           <li>
-            <Link to="/" className="logo-link">
+            <Link to="/" className={styles.logoLink}>
               <img
                 src={logoSvg}
                 width="30"
                 alt="Logo SVG"
-                className="logo-svg"
+                className={styles.logoSvg}
               />
-              <span className="logo-text">Vinson Blogs</span>
+              <span className={styles.logoText}>Vinson Blogs</span>
             </Link>
           </li>
           <li>
             <button
               type="button"
-              className="burger-menu"
+              className={styles.burgerMenu}
               aria-label="Open dropdown menu"
               onClick={handleDropdownClick}
             >
               <span className="material-symbols-outlined">menu</span>
             </button>
-            <ul className={"right-header" + (dropdownIsOpen ? " open" : "")}>
+            <ul
+              className={
+                styles.rightHeader + (dropdownIsOpen ? ` ${styles.open}` : "")
+              }
+            >
               <li>
                 <Link to="/Journal">Journal</Link>
               </li>

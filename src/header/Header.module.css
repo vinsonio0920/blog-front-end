@@ -1,54 +1,54 @@
-.homepage-header {
+.homepageHeader {
   border-bottom: 1px solid rgb(206, 206, 206);
   height: 4rem;
 }
 
-.homepage-header nav {
+.homepageHeader nav {
   margin: 0.75rem clamp(1rem, 3vw, 2.5rem);
 }
 
-.homepage-header ul {
+.homepageHeader ul {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.logo-link {
+.logoLink {
   display: flex;
   align-items: center;
 
   text-decoration: none;
 }
 
-.logo-svg {
+.logoSvg {
   width: 2.5rem;
   margin-right: 0.5rem;
 }
 
-.logo-text {
+.logoText {
   font-family: "bebas_neueregular", sans-serif;
   font-size: 1.5rem;
   font-weight: 500;
   color: #000;
 }
 
-.burger-menu {
+.burgerMenu {
   border: none;
   background-color: transparent;
 }
 
-.right-header {
+.rightHeader {
   display: none !important;
 }
 
-.right-header a {
+.rightHeader a {
   display: block;
   text-decoration: none;
   color: #000;
 }
 
 @media (max-width: 600px) {
-  .right-header {
+  .rightHeader {
     position: fixed;
     top: 4rem;
     left: 0;
@@ -59,41 +59,41 @@
     z-index: 999;
   }
 
-  .right-header.open {
+  .rightHeader.open {
     display: flex !important;
     flex-direction: column;
     justify-content: flex-start;
   }
 
-  .right-header li {
+  .rightHeader li {
     width: 100%;
   }
 
-  .right-header a {
+  .rightHeader a {
     text-align: center;
     font-weight: 500;
     padding: 1.5rem 0;
   }
 
-  .right-header a:hover {
+  .rightHeader a:hover {
     background-color: #abeaff;
   }
 }
 
 @media (min-width: 600px) {
-  .burger-menu {
+  .burgerMenu {
     display: none;
   }
 
-  .right-header {
+  .rightHeader {
     display: flex !important;
   }
 
-  .right-header a {
+  .rightHeader a {
     margin-left: clamp(1rem, 3vw, 2rem);
   }
 
-  .right-header a:hover {
+  .rightHeader a:hover {
     text-decoration: underline;
   }
 }

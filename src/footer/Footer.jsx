@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import "./Footer.css";
+import styles from "./Footer.module.css";
 import {
   blenderSvg,
   githubSvg,
@@ -10,12 +10,12 @@ import {
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className={styles.footer}>
       <nav>
-        <ul className="footer-ul">
-          <li className="social-li">
-            <p className="social-para">See me around!</p>
-            <ul className="social-links">
+        <ul className={styles.footerUl}>
+          <li>
+            <p className={styles.socialPara}>See me around!</p>
+            <ul className={styles.socialLinks}>
               <li>
                 <Link to="">
                   <img
@@ -65,7 +65,7 @@ const Footer = () => {
             </ul>
           </li>
           <li>
-            <ul className="other-links">
+            <ul className={styles.otherLinks}>
               <li>
                 <Link to="/attributions">Attributions</Link>
               </li>
@@ -85,7 +85,7 @@ const Footer = () => {
           </li>
         </ul>
       </nav>
-      <p className="copyright-statement">Copyright ©2026; Vinson Blogs</p>
+      <p className={styles.copyrightStatement}>Copyright ©2026; Vinson Blogs</p>
     </footer>
   );
 };
