@@ -1,8 +1,15 @@
+import { useState } from "react";
 import { Link } from "react-router";
 import "./Header.css";
 import { logoSvg } from "../assets";
 
 const Header = () => {
+  const [dropdownIsOpen, setDropdownIsOpen] = useState(false);
+
+  function handleDropdownClick() {
+    setDropdownIsOpen(!dropdownIsOpen);
+  }
+
   return (
     <header className="homepage-header">
       <nav>
@@ -23,10 +30,11 @@ const Header = () => {
               type="button"
               className="burger-menu"
               aria-label="Open dropdown menu"
+              onClick={handleDropdownClick}
             >
               <span className="material-symbols-outlined">menu</span>
             </button>
-            <ul className="right-header">
+            <ul className={"right-header" + (dropdownIsOpen ? " open" : "")}>
               <li>
                 <Link to="/Journal">Journal</Link>
               </li>
