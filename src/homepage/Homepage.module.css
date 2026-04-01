@@ -1,9 +1,34 @@
+.errorContainer,
+.constructionContainer {
+  min-height: calc(100vh - 4rem);
+}
+
 .errorContainer {
-  min-height: 40rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .errorPara {
   text-align: center;
   color: #ff0000;
-  margin-top: 3rem;
+  padding: clamp(1rem, 4vw, 3rem);
+}
+
+.constructionContainer {
+  text-align: center;
+  padding: clamp(1rem, 4vw, 3rem);
+}
+
+.constructionImage {
+  display: block;
+  width: 100%;
+  max-width: 30rem;
+  margin: 5rem auto 1rem auto;
+}
+
+.constructionHeader {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  margin-bottom: 1rem;
 }

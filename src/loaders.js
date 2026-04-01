@@ -1,5 +1,5 @@
 const homepageLoader = async () => {
-  const url = `http://localhost:3000/posts/190`;
+  const url = `http://localhost:3000/posts/900`;
 
   try {
     const response = await fetch(url);

@@ -6,6 +6,8 @@ import linkedinSvg from "./social-media/linkedin.svg";
 import robloxSvg from "./social-media/roblox.svg";
 import stackoverflowSvg from "./social-media/stackoverflow.svg";
 
+import constructionImage from "./homepage/construction.jpg";
+
 export {
   logoSvg,
   blenderSvg,
@@ -13,4 +15,5 @@ export {
   linkedinSvg,
   robloxSvg,
   stackoverflowSvg,
+  constructionImage,
 };
