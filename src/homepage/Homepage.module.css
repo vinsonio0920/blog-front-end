@@ -1,0 +1,9 @@
+.errorContainer {
+  min-height: 40rem;
+}
+
+.errorPara {
+  text-align: center;
+  color: #ff0000;
+  margin-top: 3rem;
+}

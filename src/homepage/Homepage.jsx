@@ -1,9 +1,8 @@
+import { useLoaderData } from "react-router";
+import styles from "./Homepage.module.css";
+
 const Homepage = () => {
-  return (
-    <>
-      <p>HEy!</p>
-    </>
-  );
+  const { result } = useLoaderData();
 };
 
 export { Homepage };

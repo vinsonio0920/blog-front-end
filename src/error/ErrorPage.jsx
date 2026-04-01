@@ -12,8 +12,13 @@ const ErrorPage = () => {
           Go back to the homepage
         </Link>
         <div className={styles.logoContainer}>
-          <img src={logoSvg} width="30" alt="Logo SVG" className="logo-svg" />
-          <span className="logo-text">Vinson Blogs</span>
+          <img
+            src={logoSvg}
+            width="30"
+            alt="Logo SVG"
+            className={styles.logoSvg}
+          />
+          <span className={styles.logoText}>Vinson Blogs</span>
         </div>
       </div>
     </div>

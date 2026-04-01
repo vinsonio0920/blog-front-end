@@ -30,3 +30,15 @@
   align-items: center;
   margin-top: 0.5rem;
 }
+
+.logoSvg {
+  width: 2.5rem;
+  margin-right: 0.5rem;
+}
+
+.logoText {
+  font-family: "bebas_neueregular", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #000;
+}
