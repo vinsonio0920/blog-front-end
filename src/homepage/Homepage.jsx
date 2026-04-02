@@ -38,21 +38,45 @@ const Homepage = () => {
   }
 
   // temporary featured post functionality
-  const featuredPost = posts.pop();
+  const featuredPost = posts[posts.length - 1];
 
   return (
     <>
+      <h1>Today's Featured Article</h1>
       <article className={styles.featuredContainer}>
         <img src={featuredPost.image} alt="Article image" />
-        <h3>Featured Article</h3>
         <p>
           {featuredPost.author.name} • {featuredPost.created}
         </p>
         <h1>{featuredPost.title}</h1>
         <p>{featuredPost.description}</p>
-        <div className={styles.categories}>{/* to be added soon! */}</div>
+        <div className={styles.categories}>
+          {featuredPost.categories.map((category) => (
+            <p key={category.id}>{category.name}</p>
+          ))}
+        </div>
       </article>
-      <ul className={styles.allArticles}></ul>
+      <h2>All Articles</h2>
+      <ul className={styles.allArticles}>
+        {posts.map((post) => (
+          <li key={post.id}>
+            <article>
+              <img src={post.image} alt="Article image" />
+              <p>
+                {post.author.name} • {post.created}
+              </p>
+              <h1>{post.title}</h1>
+              <p>{post.description}</p>
+              <div className={styles.categories}>
+                {post.categories.map((category) => (
+                  <p key={category.id}>{category.name}</p>
+                ))}
+              </div>
+            </article>
+          </li>
+        ))}
+      </ul>
+      <p>Page 1</p>
     </>
   );
 };
