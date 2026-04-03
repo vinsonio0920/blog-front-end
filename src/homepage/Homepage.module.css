@@ -49,6 +49,15 @@
   margin-bottom: 3rem;
 }
 
+.postLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.postLink:hover {
+  text-decoration: underline;
+}
+
 .postImage {
   width: 100%;
 }
@@ -79,6 +88,14 @@
   background-color: #219ebc;
   border-radius: 5px;
   padding: 0.25rem 0.5rem;
+}
+
+.categoryLink:hover {
+  background-color: #31afcf;
+}
+
+.categoryLink:active {
+  background-color: #219ebc;
 }
 
 .allHeading {

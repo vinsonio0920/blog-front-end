@@ -8,11 +8,23 @@ const Post = ({ post }) => {
 
   return (
     <article className={styles.postArticle}>
-      <img src={post.image} className={styles.postImage} alt="Article image" />
+      <Link to={`/posts/${post.id}`} className={styles.postLink}>
+        <img
+          src={post.image}
+          className={styles.postImage}
+          alt="Article image"
+        />
+      </Link>
       <p className={styles.postInfo}>
-        {post.author.name} • {formattedDate}
+        <Link to={`/users/${post.author.id}`} className={styles.postLink}>
+          {post.author.name} • {formattedDate}
+        </Link>
       </p>
-      <h1 className={styles.postHeading}>{post.title}</h1>
+      <h1 className={styles.postHeading}>
+        <Link to={`/posts/${post.id}`} className={styles.postLink}>
+          {post.title}
+        </Link>
+      </h1>
       <div className={styles.categoriesContainer}>
         {post.categories.map((category) => (
           <Link
