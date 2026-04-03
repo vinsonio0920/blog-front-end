@@ -34,7 +34,7 @@
 }
 
 .homepageContainer {
-  margin: 5rem 1rem;
+  margin: 5rem 1rem 0 1rem;
 }
 
 .homepageHeading,
@@ -98,6 +98,24 @@
   background-color: #219ebc;
 }
 
-.allHeading {
-  margin-bottom: 3rem;
+.pageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5rem 0 1rem 0;
+}
+
+.pageContainer button {
+  background-color: transparent;
+  border: none;
+}
+
+.pageContainer button.disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.3;
+}
+
+.pageContainer p {
+  margin: -0.1rem 0.5rem 0 0.5rem;
 }

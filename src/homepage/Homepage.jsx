@@ -2,6 +2,7 @@ import { Link, useLoaderData } from "react-router";
 import styles from "./Homepage.module.css";
 import { constructionImage } from "../assets";
 import { format } from "date-fns";
+import { useState } from "react";
 
 const Post = ({ post }) => {
   const formattedDate = format(post.created, "MMM d, y");
@@ -42,9 +43,25 @@ const Post = ({ post }) => {
 };
 
 const Homepage = () => {
+  const [page, setPage] = useState(1);
   const { result } = useLoaderData();
+
   const posts = result.data;
-  console.log(posts);
+  const maxPages = Math.floor(posts.length / 8) + 1;
+
+  function handlePageButtonClick(event) {
+    const buttonType = event.currentTarget.dataset.type;
+
+    if (buttonType === "previous") {
+      if (page <= 1) return;
+
+      setPage(page - 1);
+    } else {
+      if (page >= maxPages) return;
+
+      setPage(page + 1);
+    }
+  }
 
   // check if there was an error fetching data
   if (result.status === "error" || !posts) {
@@ -91,7 +108,25 @@ const Homepage = () => {
           </li>
         ))}
       </ul>
-      <p>Page 1</p>
+      <div className={styles.pageContainer}>
+        <button
+          className={page <= 1 ? styles.disabled : ""}
+          aria-label="Previous page"
+          data-type="previous"
+          onClick={handlePageButtonClick}
+        >
+          <span className="material-symbols-outlined">chevron_left</span>
+        </button>
+        <p>Page {page}</p>
+        <button
+          className={page >= maxPages ? styles.disabled : ""}
+          aria-label="Next page"
+          data-type="next"
+          onClick={handlePageButtonClick}
+        >
+          <span className="material-symbols-outlined">chevron_right</span>
+        </button>
+      </div>
     </div>
   );
 };
