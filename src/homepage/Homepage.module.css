@@ -29,6 +29,58 @@
 
 .constructionHeader {
   font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 1rem;
+}
+
+.homepageContainer {
+  margin: 5rem 1rem;
+}
+
+.homepageHeading,
+.allHeading {
+  font-size: clamp(2rem, 4vw, 3rem);
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.postArticle {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.postImage {
+  width: 100%;
+}
+
+.postInfo {
+  color: rgb(79, 79, 79);
+  margin-top: 0.5rem;
+}
+
+.postHeading {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0.75rem 0;
+}
+
+.categoriesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.categoryLink {
+  display: block;
+  text-decoration: none;
+  color: #fff;
+  background-color: #219ebc;
+  border-radius: 5px;
+  padding: 0.25rem 0.5rem;
+}
+
+.allHeading {
+  margin-bottom: 3rem;
 }

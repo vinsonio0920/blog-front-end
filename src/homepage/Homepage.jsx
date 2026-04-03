@@ -1,6 +1,33 @@
-import { useLoaderData } from "react-router";
+import { Link, useLoaderData } from "react-router";
 import styles from "./Homepage.module.css";
 import { constructionImage } from "../assets";
+import { format } from "date-fns";
+
+const Post = ({ post }) => {
+  const formattedDate = format(post.created, "MMM d, y");
+
+  return (
+    <article className={styles.postArticle}>
+      <img src={post.image} className={styles.postImage} alt="Article image" />
+      <p className={styles.postInfo}>
+        {post.author.name} • {formattedDate}
+      </p>
+      <h1 className={styles.postHeading}>{post.title}</h1>
+      <div className={styles.categoriesContainer}>
+        {post.categories.map((category) => (
+          <Link
+            to={`/categories/${category.id}`}
+            className={styles.categoryLink}
+            key={category.id}
+          >
+            {category.name}
+          </Link>
+        ))}
+      </div>
+      <p>{post.description}</p>
+    </article>
+  );
+};
 
 const Homepage = () => {
   const { result } = useLoaderData();
@@ -41,43 +68,19 @@ const Homepage = () => {
   const featuredPost = posts[posts.length - 1];
 
   return (
-    <>
-      <h1>Today's Featured Article</h1>
-      <article className={styles.featuredContainer}>
-        <img src={featuredPost.image} alt="Article image" />
-        <p>
-          {featuredPost.author.name} • {featuredPost.created}
-        </p>
-        <h1>{featuredPost.title}</h1>
-        <p>{featuredPost.description}</p>
-        <div className={styles.categories}>
-          {featuredPost.categories.map((category) => (
-            <p key={category.id}>{category.name}</p>
-          ))}
-        </div>
-      </article>
-      <h2>All Articles</h2>
+    <div className={styles.homepageContainer}>
+      <h1 className={styles.homepageHeading}>Today's Featured Article</h1>
+      <Post post={featuredPost} />
+      <h2 className={styles.allHeading}>All Articles</h2>
       <ul className={styles.allArticles}>
         {posts.map((post) => (
           <li key={post.id}>
-            <article>
-              <img src={post.image} alt="Article image" />
-              <p>
-                {post.author.name} • {post.created}
-              </p>
-              <h1>{post.title}</h1>
-              <p>{post.description}</p>
-              <div className={styles.categories}>
-                {post.categories.map((category) => (
-                  <p key={category.id}>{category.name}</p>
-                ))}
-              </div>
-            </article>
+            <Post post={post} />
           </li>
         ))}
       </ul>
       <p>Page 1</p>
-    </>
+    </div>
   );
 };
 
