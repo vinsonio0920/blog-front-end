@@ -48,6 +48,12 @@ const Homepage = () => {
 
   const posts = result.data;
   const maxPages = Math.floor(posts.length / 8) + 1;
+  let pagePosts;
+  if (posts.length > 8) {
+    pagePosts = posts.slice((page - 1) * 8, (page - 1) * 8 + 8);
+  } else {
+    pagePosts = posts;
+  }
 
   function handlePageButtonClick(event) {
     const buttonType = event.currentTarget.dataset.type;
@@ -102,7 +108,7 @@ const Homepage = () => {
       <Post post={featuredPost} />
       <h2 className={styles.allHeading}>All Articles</h2>
       <ul className={styles.allArticles}>
-        {posts.map((post) => (
+        {pagePosts.map((post) => (
           <li key={post.id}>
             <Post post={post} />
           </li>
