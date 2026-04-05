@@ -97,8 +97,10 @@ const Homepage = () => {
 
   return (
     <div className={styles.homepageContainer}>
-      <h1 className={styles.homepageHeading}>Today's Featured Article</h1>
-      <Post post={featuredPost} />
+      <div className={styles.featuredContainer}>
+        <h1 className={styles.homepageHeading}>Today's Featured Article</h1>
+        <Post post={featuredPost} />
+      </div>
       <h2 className={styles.allHeading}>All Articles</h2>
       <ul className={styles.articlesUl}>
         {pagePosts.map((post) => (
