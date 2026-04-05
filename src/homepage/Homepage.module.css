@@ -34,7 +34,7 @@
 }
 
 .homepageContainer {
-  margin: 5rem 1rem 0 1rem;
+  margin: 3rem clamp(1rem, 6vw, 3rem) 0 clamp(1rem, 6vw, 3rem);
 }
 
 .homepageHeading,
@@ -45,8 +45,22 @@
 }
 
 .postArticle {
-  text-align: center;
+  position: relative;
+  padding-bottom: 1rem;
   margin-bottom: 3rem;
+}
+
+.postArticle *:not(.articleLink) {
+  position: relative;
+  z-index: 999;
+}
+
+.articleLink {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .postLink {
@@ -60,11 +74,15 @@
 
 .postImage {
   width: 100%;
+  height: 15rem;
+  object-fit: cover;
+  margin-bottom: 1.5rem;
+  z-index: -1 !important;
 }
 
 .postInfo {
+  font-weight: 600;
   color: rgb(79, 79, 79);
-  margin-top: 0.5rem;
 }
 
 .postHeading {
@@ -74,28 +92,28 @@
 }
 
 .categoriesContainer {
-  display: flex;
+  display: inline-flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 0.5rem 0.75rem;
-  margin-bottom: 1rem;
+  margin-top: 1.5rem;
 }
 
 .categoryLink {
   display: block;
+  font-weight: 600;
   text-decoration: none;
-  color: #fff;
-  background-color: #219ebc;
-  border-radius: 5px;
-  padding: 0.25rem 0.5rem;
+  color: #000;
+  border: 1.5px solid #000;
+  border-radius: 999px;
+  padding: 0.25rem 0.75rem;
 }
 
 .categoryLink:hover {
-  background-color: #31afcf;
+  background-color: rgb(244, 244, 244);
 }
 
 .categoryLink:active {
-  background-color: #219ebc;
+  background-color: #fff;
 }
 
 .pageContainer {

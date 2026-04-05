@@ -9,23 +9,17 @@ const Post = ({ post }) => {
 
   return (
     <article className={styles.postArticle}>
-      <Link to={`/posts/${post.id}`} className={styles.postLink}>
-        <img
-          src={post.image}
-          className={styles.postImage}
-          alt="Article image"
-        />
-      </Link>
-      <p className={styles.postInfo}>
-        <Link to={`/users/${post.author.id}`} className={styles.postLink}>
+      <Link to={`/posts/${post.id}`} className={styles.articleLink}></Link>
+      <img src={post.image} className={styles.postImage} alt="Article image" />
+      <Link to={`/users/${post.author.id}`} className={styles.postLink}>
+        <p className={styles.postInfo}>
           {post.author.name} • {formattedDate}
-        </Link>
-      </p>
-      <h1 className={styles.postHeading}>
-        <Link to={`/posts/${post.id}`} className={styles.postLink}>
-          {post.title}
-        </Link>
-      </h1>
+        </p>
+      </Link>
+      <Link to={`posts/${post.id}`} className={styles.postLink}>
+        <h1 className={styles.postHeading}>{post.title}</h1>
+      </Link>
+      <p>{post.description}</p>
       <div className={styles.categoriesContainer}>
         {post.categories.map((category) => (
           <Link
@@ -37,7 +31,6 @@ const Post = ({ post }) => {
           </Link>
         ))}
       </div>
-      <p>{post.description}</p>
     </article>
   );
 };
@@ -107,7 +100,7 @@ const Homepage = () => {
       <h1 className={styles.homepageHeading}>Today's Featured Article</h1>
       <Post post={featuredPost} />
       <h2 className={styles.allHeading}>All Articles</h2>
-      <ul className={styles.allArticles}>
+      <ul className={styles.articlesUl}>
         {pagePosts.map((post) => (
           <li key={post.id}>
             <Post post={post} />
