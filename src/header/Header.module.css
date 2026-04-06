@@ -56,7 +56,7 @@
     background-color: #fff;
     width: 100%;
     height: calc(100vh - 4rem);
-    z-index: 999;
+    z-index: 9999;
   }
 
   .rightHeader.open {
