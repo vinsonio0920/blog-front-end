@@ -24,42 +24,33 @@ const SignUp = () => {
       </section>
       <section className="formSection">
         <form>
-          <h1>Create account</h1>
-          <section>
-            <div>
-              <label for="name">Name</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                required
-                minLength="3"
-                maxLength="64"
-              />
-            </div>
-            <div>
-              <label for="email">Email</label>
-              <input
-                type="text"
-                id="email"
-                name="email"
-                required
-                minLength="3"
-                maxLength="254"
-              />
-            </div>
-            <div>
-              <label for="password">Password</label>
-              <input
-                type="text"
-                id="password"
-                name="password"
-                required
-                minLength="3"
-                maxLength="254"
-              />
-            </div>
-          </section>
+          <h1>Create Account</h1>
+          <div>
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              minLength="3"
+              maxLength="64"
+            />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input
+              type="text"
+              id="email"
+              name="email"
+              required
+              minLength="3"
+              maxLength="254"
+            />
+          </div>
+          <div>
+            <label for="password">Password</label>
+            <input type="text" id="password" name="password" required />
+          </div>
           <button type="submit">Sign up</button>
         </form>
         <p>
