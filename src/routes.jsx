@@ -3,7 +3,7 @@ import { Homepage } from "./homepage/Homepage";
 import { ErrorPage } from "./error/ErrorPage";
 import { homepageLoader } from "./loaders";
 import { SignIn } from "./signIn/SignIn";
-import { SignUp } from "../signUp/SignUp";
+import { SignUp } from "./signUp/SignUp";
 
 const routes = [
   {
