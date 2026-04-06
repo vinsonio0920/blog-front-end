@@ -60,6 +60,11 @@
   line-height: 1.5;
 }
 
+.callToAction .tripleT {
+  height: 1rem;
+  margin: 0;
+}
+
 .formSection {
   width: 100%;
   max-width: 22rem;

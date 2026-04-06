@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import styles from "./SignUp.module.css";
-import { logoSvg } from "../assets";
+import { logoSvg, tripleT } from "../assets";
 
 const SignUp = () => {
   return (
@@ -23,6 +23,24 @@ const SignUp = () => {
               Anomali mengerikan yang hanya keluar pada sahur, konon katanya
               kalau ada orang yang dipanggil sahur tiga kali dan tidak nyaut,
               maka makhluk ini datang di rumah kalian.
+              <img
+                src={tripleT}
+                className={styles.tripleT}
+                width="30"
+                alt="An image of tung tung tung sahur"
+              />
+              <img
+                src={tripleT}
+                className={styles.tripleT}
+                width="30"
+                alt="An image of tung tung tung sahur"
+              />
+              <img
+                src={tripleT}
+                className={styles.tripleT}
+                width="30"
+                alt="An image of tung tung tung sahur"
+              />
             </p>
           </div>
         </div>
