@@ -56,7 +56,7 @@ const SignUp = () => {
             />
             <span className={styles.logoText}>Vinson Blogs</span>
           </Link>
-          <form className={styles.signInForm}>
+          <form className={styles.authForm}>
             <h1>Create Account</h1>
             <div>
               <label htmlFor="name">Name</label>

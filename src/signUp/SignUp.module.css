@@ -75,19 +75,19 @@
   margin: 3rem 0 1.5rem 0;
 }
 
-.signInForm h1 {
+.authForm h1 {
   font-size: 1.5rem;
   font-weight: 600;
   margin: 1rem 0;
 }
 
-.signInForm label {
+.authForm label {
   display: block;
   margin-bottom: 0.5rem;
 }
 
-.signInForm input[type="text"],
-.signInForm button[type="submit"] {
+.authForm input[type="text"],
+.authForm button[type="submit"] {
   font-size: 1rem;
   width: 100%;
   border-radius: 5px;
@@ -95,11 +95,11 @@
   margin-bottom: 1rem;
 }
 
-.signInForm input[type="text"] {
+.authForm input[type="text"] {
   border: 1px solid #cecece;
 }
 
-.signInForm button[type="submit"] {
+.authForm button[type="submit"] {
   font-weight: 600;
   background-color: #abeaff;
   border: none;
@@ -107,11 +107,11 @@
   margin-top: 0.15rem;
 }
 
-.signInForm button[type="submit"]:hover {
+.authForm button[type="submit"]:hover {
   background-color: #a3e7fd;
 }
 
-.signInForm button[type="submit"]:active {
+.authForm button[type="submit"]:active {
   background-color: #a3e7fd;
 }
 
@@ -137,10 +137,6 @@
 
   .heroSection {
     flex: 1.5;
-    display: block;
-  }
-
-  .heroSection {
     display: block;
   }
 
