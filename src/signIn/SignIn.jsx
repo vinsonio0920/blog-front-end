@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Form, Link } from "react-router";
 import styles from "./SignIn.module.css";
 import { logoSvg } from "../assets";
 
@@ -37,7 +37,7 @@ const SignIn = () => {
             />
             <span className={styles.logoText}>Vinson Blogs</span>
           </Link>
-          <form className={styles.authForm}>
+          <Form className={styles.authForm} method="POST">
             <h1>Sign In</h1>
             <div>
               <label htmlFor="email">Email</label>
@@ -48,7 +48,7 @@ const SignIn = () => {
               <input type="text" id="password" name="password" required />
             </div>
             <button type="submit">Sign in</button>
-          </form>
+          </Form>
           <p className={styles.redirectLink}>
             New to Vinson Blogs? <Link to="/sign-up">Sign Up</Link>
           </p>
