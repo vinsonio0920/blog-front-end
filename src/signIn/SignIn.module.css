@@ -79,6 +79,14 @@
   margin: 1rem 0;
 }
 
+.authForm .error {
+  color: rgb(255, 52, 52);
+  background-color: rgb(255, 230, 230);
+  border-radius: 5px;
+  padding: 0.65rem;
+  margin: 1rem 0;
+}
+
 .authForm label {
   display: block;
   margin-bottom: 0.5rem;

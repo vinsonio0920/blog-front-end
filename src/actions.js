@@ -10,12 +10,12 @@ const signInAction = async ({ request }) => {
     });
 
     const result = await response.json();
+    return result;
     // TODO: Handle the result!
 
-    // return result;
-
-    // if error, re-render sign in form with error message
-    // I'm thinking redirect users back to
+    // error will be handled on JSX
+    // if success, then save token to localstorage and useNavigate to the homepage!
+    // sanity check: make sure only one localstorage is set at a time!
   } catch (err) {
     console.error(err.message);
   }
