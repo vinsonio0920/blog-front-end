@@ -1,3 +1,5 @@
+import { redirect } from "react-router";
+
 const signInAction = async ({ request }) => {
   // instead of fetching
   const formData = Object.fromEntries(await request.formData());
@@ -10,12 +12,15 @@ const signInAction = async ({ request }) => {
     });
 
     const result = await response.json();
-    return result;
-    // TODO: Handle the result!
 
-    // error will be handled on JSX
-    // if success, then save token to localstorage and useNavigate to the homepage!
-    // sanity check: make sure only one localstorage is set at a time!
+    if (result.status === "success") {
+      const token = result.data.token;
+      localStorage.setItem("jwtToken", token);
+
+      return redirect("/");
+    } else {
+      return result;
+    }
   } catch (err) {
     console.error(err.message);
   }

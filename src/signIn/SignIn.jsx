@@ -53,7 +53,7 @@ const SignIn = () => {
             </div>
             <div>
               <label htmlFor="password">Password</label>
-              <input type="text" id="password" name="password" required />
+              <input type="password" id="password" name="password" required />
             </div>
             <button type="submit">Sign in</button>
           </fetcher.Form>
