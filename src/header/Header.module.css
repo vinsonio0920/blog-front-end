@@ -41,10 +41,18 @@
   display: none !important;
 }
 
-.rightHeader a {
+.rightHeader a,
+.rightHeader .signOutButton {
   display: block;
   text-decoration: none;
   color: #000;
+}
+
+.rightHeader .signOutButton {
+  font-size: 1rem;
+  background-color: transparent;
+  border: none;
+  padding: 0;
 }
 
 @media (max-width: 600px) {
@@ -69,13 +77,19 @@
     width: 100%;
   }
 
-  .rightHeader a {
+  .rightHeader a,
+  .rightHeader .signOutButton {
     text-align: center;
     font-weight: 500;
     padding: 1.5rem 0;
   }
 
-  .rightHeader a:hover {
+  .rightHeader .signOutButton {
+    width: 100%;
+  }
+
+  .rightHeader a:hover,
+  .rightHeader .signOutButton:hover {
     background-color: #abeaff;
   }
 }
@@ -89,11 +103,13 @@
     display: flex !important;
   }
 
-  .rightHeader a {
+  .rightHeader a,
+  .rightHeader .signOutButton {
     margin-left: clamp(1rem, 3vw, 2rem);
   }
 
-  .rightHeader a:hover {
+  .rightHeader a:hover,
+  .rightHeader .signOutButton:hover {
     text-decoration: underline;
   }
 }

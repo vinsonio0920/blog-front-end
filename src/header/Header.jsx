@@ -1,10 +1,31 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router";
 import styles from "./Header.module.css";
 import { logoSvg } from "../assets";
+import { JwtContext } from "../jwt-context";
+
+const SignOutButton = () => {
+  const jwt = useContext(JwtContext);
+
+  function handleSignOutClick() {
+    localStorage.removeItem("jwtToken");
+    jwt.setJwtToken(null);
+  }
+
+  return (
+    <button
+      type="button"
+      className={styles.signOutButton}
+      onClick={handleSignOutClick}
+    >
+      Sign Out
+    </button>
+  );
+};
 
 const Header = () => {
   const [dropdownIsOpen, setDropdownIsOpen] = useState(false);
+  const jwt = useContext(JwtContext);
 
   function handleDropdownClick() {
     setDropdownIsOpen(!dropdownIsOpen);
@@ -49,7 +70,11 @@ const Header = () => {
                 <Link to="About">About</Link>
               </li>
               <li>
-                <Link to="/sign-in">Sign In</Link>
+                {jwt.jwtToken ? (
+                  <SignOutButton />
+                ) : (
+                  <Link to="/sign-in">Sign In</Link>
+                )}
               </li>
             </ul>
           </li>

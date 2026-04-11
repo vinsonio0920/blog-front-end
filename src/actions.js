@@ -1,7 +1,6 @@
 import { redirect } from "react-router";
 
 const signInAction = async ({ request }) => {
-  // instead of fetching
   const formData = Object.fromEntries(await request.formData());
   const url = "http://localhost:3000/sign-in";
 
