@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import styles from "./SignUp.module.css";
 import { logoSvg, tripleT } from "../assets";
 
