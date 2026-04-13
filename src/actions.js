@@ -1,5 +1,28 @@
 import { redirect } from "react-router";
 
+const signUpAction = async ({ request }) => {
+  const formData = Object.fromEntries(await request.formData());
+  const url = "http://localhost:3000/sign-up";
+
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      body: new URLSearchParams(formData),
+    });
+
+    const result = await response.json();
+
+    if (result.status === "success") {
+      // sign in user as well!
+      return redirect("/");
+    } else {
+      return result;
+    }
+  } catch (err) {
+    console.error(err.messsage);
+  }
+};
+
 const signInAction = async ({ request }) => {
   const formData = Object.fromEntries(await request.formData());
   const url = "http://localhost:3000/sign-in";
@@ -25,4 +48,4 @@ const signInAction = async ({ request }) => {
   }
 };
 
-export { signInAction };
+export { signUpAction, signInAction };

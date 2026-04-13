@@ -1,8 +1,20 @@
-import { Link } from "react-router-dom";
+import { Link, useFetcher } from "react-router-dom";
 import styles from "./SignUp.module.css";
 import { logoSvg, tripleT } from "../assets";
 
+const ErrorElement = ({ message }) => {
+  return <p className={styles.error}>{message}</p>;
+};
+
 const SignUp = () => {
+  const fetcher = useFetcher();
+
+  const formErrors = {};
+  // make errors into key-value pairs for easier retrieval (if any)
+  fetcher.data?.errors.map((error) => {
+    formErrors[error.path] = error.msg;
+  });
+
   return (
     <div className={styles.pageContainer}>
       <section className={styles.heroSection}>
@@ -56,7 +68,7 @@ const SignUp = () => {
             />
             <span className={styles.logoText}>Vinson Blogs</span>
           </Link>
-          <form className={styles.authForm}>
+          <fetcher.Form className={styles.authForm} method="POST">
             <h1>Create Account</h1>
             <div>
               <label htmlFor="name">Name</label>
@@ -68,6 +80,9 @@ const SignUp = () => {
                 minLength="3"
                 maxLength="64"
               />
+              {formErrors["name"] ? (
+                <ErrorElement message={formErrors["name"]} />
+              ) : null}
             </div>
             <div>
               <label htmlFor="email">Email</label>
@@ -79,13 +94,19 @@ const SignUp = () => {
                 minLength="3"
                 maxLength="254"
               />
+              {formErrors["email"] ? (
+                <ErrorElement message={formErrors["email"]} />
+              ) : null}
             </div>
             <div>
               <label htmlFor="password">Password</label>
               <input type="text" id="password" name="password" required />
+              {formErrors["password"] ? (
+                <ErrorElement message={formErrors["password"]} />
+              ) : null}
             </div>
             <button type="submit">Sign up</button>
-          </form>
+          </fetcher.Form>
           <p className={styles.redirectLink}>
             Already have an account? <Link to="/sign-in">Sign In</Link>
           </p>
