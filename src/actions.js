@@ -13,9 +13,28 @@ const signUpAction = async ({ request }) => {
     const result = await response.json();
 
     if (result.status === "success") {
-      // sign in user
+      // automatically sign in user for convenience
+      const signInUrl = "http://localhost:3000/sign-in";
 
-      return redirect("/");
+      const response = await fetch(signInUrl, {
+        method: "POST",
+        body: new URLSearchParams({
+          email: formData.email,
+          password: formData.password,
+        }),
+      });
+
+      const signInResult = await response.json();
+
+      if (signInResult.status === "success") {
+        const token = signInResult.data.token;
+        localStorage.setItem("jwtToken", token);
+
+        return redirect("/");
+      } else {
+        // sign in failed, so users will have to do it manually
+        return redirect("/sign-in");
+      }
     } else {
       return result;
     }
