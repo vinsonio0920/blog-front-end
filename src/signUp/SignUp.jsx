@@ -76,6 +76,7 @@ const SignUp = () => {
                 type="text"
                 id="name"
                 name="name"
+                className={formErrors["name"] ? styles.invalid : null}
                 required
                 minLength="3"
                 maxLength="64"
@@ -90,6 +91,7 @@ const SignUp = () => {
                 type="text"
                 id="email"
                 name="email"
+                className={formErrors["email"] ? styles.invalid : null}
                 required
                 minLength="3"
                 maxLength="254"
@@ -100,7 +102,13 @@ const SignUp = () => {
             </div>
             <div>
               <label htmlFor="password">Password</label>
-              <input type="text" id="password" name="password" required />
+              <input
+                type="text"
+                id="password"
+                name="password"
+                className={formErrors["password"] ? styles.invalid : null}
+                required
+              />
               {formErrors["password"] ? (
                 <ErrorElement message={formErrors["password"]} />
               ) : null}

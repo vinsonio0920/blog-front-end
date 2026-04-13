@@ -13,7 +13,8 @@ const signUpAction = async ({ request }) => {
     const result = await response.json();
 
     if (result.status === "success") {
-      // sign in user as well!
+      // sign in user
+
       return redirect("/");
     } else {
       return result;
