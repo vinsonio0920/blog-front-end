@@ -5,12 +5,19 @@ import { homepageLoader } from "./loaders";
 import { signUpAction, signInAction } from "./actions";
 import { SignIn } from "./signIn/SignIn";
 import { SignUp } from "./signUp/SignUp";
+import { Post } from "./post/Post";
 
 const routes = [
   {
     path: "/",
     element: <App />,
-    children: [{ index: true, element: <Homepage />, loader: homepageLoader }],
+    children: [
+      { index: true, element: <Homepage />, loader: homepageLoader },
+      {
+        path: "/posts/:postId",
+        element: <Post />,
+      },
+    ],
     errorElement: <ErrorPage />,
   },
   {
