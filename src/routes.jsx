@@ -6,6 +6,7 @@ import { signUpAction, signInAction } from "./actions";
 import { SignIn } from "./signIn/SignIn";
 import { SignUp } from "./signUp/SignUp";
 import { Post } from "./post/Post";
+import { PostList } from "./postList/PostList";
 
 const routes = [
   {
@@ -17,6 +18,10 @@ const routes = [
         path: "/posts/:postId",
         element: <Post />,
         loader: postLoader,
+      },
+      {
+        path: "/posts",
+        element: <PostList />,
       },
     ],
     errorElement: <ErrorPage />,

@@ -61,17 +61,20 @@ const Header = () => {
               }
             >
               <li>
-                <Link to="/Journal" onClick={handleDropdownClick}>
+                <Link
+                  to="/posts?category=journal"
+                  onClick={handleDropdownClick}
+                >
                   Journal
                 </Link>
               </li>
               <li>
-                <Link to="/articles" onClick={handleDropdownClick}>
+                <Link to="/posts" onClick={handleDropdownClick}>
                   Articles
                 </Link>
               </li>
               <li>
-                <Link to="About" onClick={handleDropdownClick}>
+                <Link to="/about" onClick={handleDropdownClick}>
                   About
                 </Link>
               </li>
