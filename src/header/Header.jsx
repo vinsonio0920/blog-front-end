@@ -61,19 +61,27 @@ const Header = () => {
               }
             >
               <li>
-                <Link to="/Journal">Journal</Link>
+                <Link to="/Journal" onClick={handleDropdownClick}>
+                  Journal
+                </Link>
               </li>
               <li>
-                <Link to="/articles">Articles</Link>
+                <Link to="/articles" onClick={handleDropdownClick}>
+                  Articles
+                </Link>
               </li>
               <li>
-                <Link to="About">About</Link>
+                <Link to="About" onClick={handleDropdownClick}>
+                  About
+                </Link>
               </li>
               <li>
                 {jwt.jwtToken ? (
                   <SignOutButton />
                 ) : (
-                  <Link to="/sign-in">Sign In</Link>
+                  <Link to="/sign-in" onClick={handleDropdownClick}>
+                    Sign In
+                  </Link>
                 )}
               </li>
             </ul>

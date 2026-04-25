@@ -1,8 +1,8 @@
-import { redirect } from "react-router";
+import { redirect } from "react-router-dom";
 
 const signUpAction = async ({ request }) => {
   const formData = Object.fromEntries(await request.formData());
-  const url = "http://localhost:3000/sign-up";
+  const url = `${import.meta.env.VITE_BLOG_API_WEBSITE}/sign-up`;
 
   try {
     const response = await fetch(url, {
@@ -14,7 +14,7 @@ const signUpAction = async ({ request }) => {
 
     if (result.status === "success") {
       // automatically sign in user for convenience
-      const signInUrl = "http://localhost:3000/sign-in";
+      const signInUrl = `${import.meta.env.VITE_BLOG_API_WEBSITE}/sign-in`;
 
       const response = await fetch(signInUrl, {
         method: "POST",
@@ -45,7 +45,7 @@ const signUpAction = async ({ request }) => {
 
 const signInAction = async ({ request }) => {
   const formData = Object.fromEntries(await request.formData());
-  const url = "http://localhost:3000/sign-in";
+  const url = `${import.meta.env.VITE_BLOG_API_WEBSITE}/sign-in`;
 
   try {
     const response = await fetch(url, {
