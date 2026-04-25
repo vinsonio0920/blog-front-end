@@ -1,18 +1,5 @@
-.errorContainer,
 .constructionContainer {
   min-height: calc(100vh - 4rem);
-}
-
-.errorContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.errorPara {
-  text-align: center;
-  color: #ff0000;
-  padding: clamp(1rem, 4vw, 3rem);
 }
 
 .constructionContainer {

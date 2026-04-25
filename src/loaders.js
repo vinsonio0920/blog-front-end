@@ -1,5 +1,3 @@
-import { jwtDecode } from "jwt-decode";
-
 const homepageLoader = async () => {
   const url = `${import.meta.env.VITE_BLOG_API_WEBSITE}/posts`;
 

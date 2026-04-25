@@ -65,8 +65,8 @@ const Homepage = () => {
   // check if there was an error fetching data
   if (result.status === "error" || !posts) {
     return (
-      <div className={styles.errorContainer}>
-        <p className={styles.errorPara}>
+      <div className="errorContainer">
+        <p className="errorPara">
           We encountered an error retrieving the data. Please refresh and try
           again!
         </p>
