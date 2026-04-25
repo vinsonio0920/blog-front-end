@@ -1,5 +1,7 @@
+import { jwtDecode } from "jwt-decode";
+
 const homepageLoader = async () => {
-  const url = `http://localhost:3000/posts`;
+  const url = `${import.meta.env.VITE_BLOG_API_WEBSITE}/posts`;
 
   try {
     const response = await fetch(url);
@@ -15,4 +17,22 @@ const homepageLoader = async () => {
   }
 };
 
-export { homepageLoader };
+const postLoader = async ({ params }) => {
+  const url = `${import.meta.env.VITE_BLOG_API_WEBSITE}/posts/${params.postId}`;
+
+  try {
+    const response = await fetch(url);
+
+    const result = await response.json();
+    return { result };
+  } catch (err) {
+    console.error(err.message);
+    return {
+      result: {
+        status: "error",
+      },
+    };
+  }
+};
+
+export { homepageLoader, postLoader };
