@@ -25,7 +25,7 @@ const Post = () => {
   const authorName = author.name;
 
   return (
-    <>
+    <div className={styles.postContainer}>
       <header>
         <p className={styles.date}>{formattedDate}</p>
       </header>
@@ -59,7 +59,7 @@ const Post = () => {
         <h2 className={styles.commentsHeading}>Comments</h2>
         <p>No comments yet. Start the discussion!</p>
       </div>
-    </>
+    </div>
   );
 };
 
