@@ -13,9 +13,7 @@ const Post = () => {
   const { result } = useLoaderData();
   const postData = result.data;
 
-  // create state for comments and update if successful
   const formErrors = {};
-  console.log(fetcher.data);
   fetcher.data?.errors.map((error) => {
     formErrors[error.path] = error.msg;
   });
@@ -119,10 +117,10 @@ const Post = () => {
                 name="comment"
                 required
                 maxLength="254"
-                className={formErrors["comment"] && styles.invalid}
+                className={formErrors["content"] && styles.invalid}
               />
-              {formErrors["comment"] && (
-                <ErrorElement message={formErrors["comment"]} />
+              {formErrors["content"] && (
+                <ErrorElement message={formErrors["content"]} />
               )}
             </div>
           </section>

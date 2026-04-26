@@ -69,18 +69,29 @@ const signInAction = async ({ request }) => {
 };
 
 const postAction = async ({ request }) => {
-  console.log("A!");
   const formData = Object.fromEntries(await request.formData());
   const url = `${import.meta.env.VITE_BLOG_API_WEBSITE}/posts/${formData.postId}/comments`;
 
   try {
+    const formattedPost = {
+      name: formData.name,
+      email: formData.email,
+      content: formData.comment,
+    };
+
     const response = await fetch(url, {
       method: "POST",
-      body: new URLSearchParams(formData),
+      body: new URLSearchParams(formattedPost),
     });
 
     const result = await response.json();
-    return result;
+
+    if (result.status === "success") {
+      // reload page to the comments section
+      redirect("");
+    } else {
+      return result;
+    }
   } catch (err) {
     console.error(err.message);
   }
