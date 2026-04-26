@@ -62,24 +62,34 @@ const Post = () => {
             Your email address will not be published. Required fields are marked
             with an asterisk (*)
           </p>
-          <div>
-            <label htmlFor="name">Name*</label>
-            <input type="text" id="name" name="name" required maxLength="34" />
-          </div>
-          <div>
-            <label htmlFor="email">Email*</label>
-            <input
-              type="text"
-              id="email"
-              name="email"
-              required
-              maxLength="254"
-            />
-          </div>
-          <div>
-            <label htmlFor="comment">Comment*</label>
-            <textarea id="comment" name="comment" required maxLength="254" />
-          </div>
+          <section className={styles.fieldsContainer}>
+            <div>
+              <div>
+                <label htmlFor="name">Name*</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  maxLength="34"
+                />
+              </div>
+              <div>
+                <label htmlFor="email">Email*</label>
+                <input
+                  type="text"
+                  id="email"
+                  name="email"
+                  required
+                  maxLength="254"
+                />
+              </div>
+            </div>
+            <div className={styles.commentField}>
+              <label htmlFor="comment">Comment*</label>
+              <textarea id="comment" name="comment" required maxLength="254" />
+            </div>
+          </section>
           <div>
             <button type="submit">Submit Comment</button>
           </div>

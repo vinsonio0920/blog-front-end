@@ -80,6 +80,11 @@
   margin-bottom: 1.5rem;
 }
 
+.fieldsContainer {
+  display: flex;
+  flex-direction: column;
+}
+
 .commentForm div {
   margin: 0;
 }
@@ -122,6 +127,35 @@
 
 .commentForm button[type="submit"] {
   background-color: #7b7b7b;
+}
+
+@media (min-width: 650px) {
+  .commentForm {
+    padding: 1.5rem;
+  }
+
+  .fieldsContainer {
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .fieldsContainer div {
+    flex: 1;
+  }
+
+  .fieldsContainer input {
+    margin-bottom: 0.5rem;
+  }
+
+  .fieldsContainer .commentField {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .commentForm textarea {
+    flex: 1;
+    margin-bottom: 0.5rem;
+  }
 }
 
 @media (min-width: 860px) {
