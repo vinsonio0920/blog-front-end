@@ -78,13 +78,7 @@ const Post = () => {
           </div>
           <div>
             <label htmlFor="comment">Comment*</label>
-            <input
-              type="text"
-              id="comment"
-              name="comment"
-              required
-              maxLength="254"
-            />
+            <textarea id="comment" name="comment" required maxLength="254" />
           </div>
           <div>
             <button type="submit">Submit Comment</button>
