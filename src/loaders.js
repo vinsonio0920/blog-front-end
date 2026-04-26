@@ -60,6 +60,12 @@ const postListLoader = async ({ request }) => {
     return {
       result: {
         status: "error",
+        errors: [
+          {
+            message:
+              "There was an error fetching the category's posts. Please try again later.",
+          },
+        ],
       },
     };
   }
