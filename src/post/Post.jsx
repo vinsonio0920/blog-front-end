@@ -4,10 +4,21 @@ import DOMPurify from "dompurify";
 import styles from "./Post.module.css";
 import { format } from "date-fns";
 
+const ErrorElement = ({ message }) => {
+  return <p className={styles.error}>{message}</p>;
+};
+
 const Post = () => {
   const fetcher = useFetcher();
   const { result } = useLoaderData();
   const postData = result.data;
+
+  // create state for comments and update if successful
+  const formErrors = {};
+  console.log(fetcher.data);
+  fetcher.data?.errors.map((error) => {
+    formErrors[error.path] = error.msg;
+  });
 
   if (result.status === "error") {
     return (
@@ -20,8 +31,16 @@ const Post = () => {
     );
   }
 
-  const { title, image, content, created, description, categories, author } =
-    postData;
+  const {
+    id,
+    title,
+    image,
+    content,
+    created,
+    description,
+    categories,
+    author,
+  } = postData;
   const formattedDate = format(created, "MMM d, y");
   const authorName = author.name;
 
@@ -72,7 +91,11 @@ const Post = () => {
                   name="name"
                   required
                   maxLength="34"
+                  className={formErrors["name"] && styles.invalid}
                 />
+                {formErrors["name"] && (
+                  <ErrorElement message={formErrors["name"]} />
+                )}
               </div>
               <div>
                 <label htmlFor="email">Email*</label>
@@ -82,17 +105,37 @@ const Post = () => {
                   name="email"
                   required
                   maxLength="254"
+                  className={formErrors["email"] && styles.invalid}
                 />
+                {formErrors["email"] && (
+                  <ErrorElement message={formErrors["email"]} />
+                )}
               </div>
             </div>
             <div className={styles.commentField}>
               <label htmlFor="comment">Comment*</label>
-              <textarea id="comment" name="comment" required maxLength="254" />
+              <textarea
+                id="comment"
+                name="comment"
+                required
+                maxLength="254"
+                className={formErrors["comment"] && styles.invalid}
+              />
+              {formErrors["comment"] && (
+                <ErrorElement message={formErrors["comment"]} />
+              )}
             </div>
           </section>
-          <div>
-            <button type="submit">Submit Comment</button>
-          </div>
+          <section>
+            <div>
+              <input type="hidden" id="postId" name="postId" value={id} />
+            </div>
+          </section>
+          <section>
+            <div>
+              <button type="submit">Submit Comment</button>
+            </div>
+          </section>
         </fetcher.Form>
         <h2 className={styles.commentsHeading}>Comments</h2>
         <p>No comments yet. Start the discussion!</p>

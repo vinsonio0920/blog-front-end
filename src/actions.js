@@ -68,4 +68,22 @@ const signInAction = async ({ request }) => {
   }
 };
 
-export { signUpAction, signInAction };
+const postAction = async ({ request }) => {
+  console.log("A!");
+  const formData = Object.fromEntries(await request.formData());
+  const url = `${import.meta.env.VITE_BLOG_API_WEBSITE}/posts/${formData.postId}/comments`;
+
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      body: new URLSearchParams(formData),
+    });
+
+    const result = await response.json();
+    return result;
+  } catch (err) {
+    console.error(err.message);
+  }
+};
+
+export { signUpAction, signInAction, postAction };

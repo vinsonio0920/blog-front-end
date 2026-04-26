@@ -2,7 +2,7 @@ import { App } from "./App";
 import { Homepage } from "./homepage/Homepage";
 import { ErrorPage } from "./error/ErrorPage";
 import { homepageLoader, postListLoader, postLoader } from "./loaders";
-import { signUpAction, signInAction } from "./actions";
+import { signUpAction, signInAction, postAction } from "./actions";
 import { SignIn } from "./signIn/SignIn";
 import { SignUp } from "./signUp/SignUp";
 import { Post } from "./post/Post";
@@ -16,6 +16,7 @@ const routes = [
       { index: true, element: <Homepage />, loader: homepageLoader },
       {
         path: "/posts/:postId",
+        action: postAction,
         element: <Post />,
         loader: postLoader,
       },
