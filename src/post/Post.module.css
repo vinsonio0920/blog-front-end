@@ -129,6 +129,17 @@
   background-color: #7b7b7b;
 }
 
+.invalid {
+  outline: 1px solid red;
+  border: none;
+}
+
+.error {
+  text-align: start;
+  color: red !important;
+  margin: -0.5rem 0 0.75rem 0 !important;
+}
+
 @media (min-width: 650px) {
   .commentForm {
     padding: 1.5rem;
@@ -155,6 +166,12 @@
   .commentForm textarea {
     flex: 1;
     margin-bottom: 0.5rem;
+  }
+
+  .error {
+    text-align: start;
+    color: red !important;
+    margin-top: 0 !important;
   }
 }
 
