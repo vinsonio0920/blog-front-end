@@ -1,7 +1,7 @@
 import { App } from "./App";
 import { Homepage } from "./homepage/Homepage";
 import { ErrorPage } from "./error/ErrorPage";
-import { homepageLoader, postLoader } from "./loaders";
+import { homepageLoader, postListLoader, postLoader } from "./loaders";
 import { signUpAction, signInAction } from "./actions";
 import { SignIn } from "./signIn/SignIn";
 import { SignUp } from "./signUp/SignUp";
@@ -22,6 +22,7 @@ const routes = [
       {
         path: "/posts",
         element: <PostList />,
+        loader: postListLoader,
       },
     ],
     errorElement: <ErrorPage />,

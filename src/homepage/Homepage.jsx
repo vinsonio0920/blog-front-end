@@ -11,7 +11,7 @@ const Post = ({ post }) => {
     <article className={styles.postArticle}>
       <Link to={`/posts/${post.id}`} className={styles.articleLink}></Link>
       <img src={post.image} className={styles.postImage} alt="Article image" />
-      <Link to={`/users/${post.author.id}`} className={styles.postLink}>
+      <Link to={`/posts?userId=${post.author.id}`} className={styles.postLink}>
         <p className={styles.postInfo}>
           {post.author.name} • {formattedDate}
         </p>
@@ -23,7 +23,7 @@ const Post = ({ post }) => {
       <div className={styles.categoriesContainer}>
         {post.categories.map((category) => (
           <Link
-            to={`/categories/${category.id}`}
+            to={`/posts?category=${category.name}`}
             className={styles.categoryLink}
             key={category.id}
           >

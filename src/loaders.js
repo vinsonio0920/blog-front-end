@@ -33,4 +33,36 @@ const postLoader = async ({ params }) => {
   }
 };
 
-export { homepageLoader, postLoader };
+const postListLoader = async ({ request }) => {
+  const url = new URL(request.url);
+  const userId = url.searchParams.get("userId");
+  const category = url.searchParams.get("category");
+
+  try {
+    let fetchUrl;
+    let title;
+    if (userId) {
+      fetchUrl = `${import.meta.env.VITE_BLOG_API_WEBSITE}/posts?userId=${userId}`;
+    } else if (category) {
+      fetchUrl = `${import.meta.env.VITE_BLOG_API_WEBSITE}/posts?category=${category}`;
+      title = category;
+    } else {
+      fetchUrl = `${import.meta.env.VITE_BLOG_API_WEBSITE}/posts`;
+      title = "All posts";
+    }
+
+    const response = await fetch(fetchUrl);
+
+    const result = await response.json();
+    return { result, title };
+  } catch (err) {
+    console.error(err.message);
+    return {
+      result: {
+        status: "error",
+      },
+    };
+  }
+};
+
+export { homepageLoader, postLoader, postListLoader };
