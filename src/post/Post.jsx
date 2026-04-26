@@ -1,10 +1,11 @@
-import { useLoaderData, Link } from "react-router-dom";
+import { useLoaderData, Link, useFetcher } from "react-router-dom";
 import parse from "html-react-parser";
 import DOMPurify from "dompurify";
 import styles from "./Post.module.css";
 import { format } from "date-fns";
 
 const Post = () => {
+  const fetcher = useFetcher();
   const { result } = useLoaderData();
   const postData = result.data;
 
@@ -55,7 +56,40 @@ const Post = () => {
         )}
       </div>
       <div>
-        {/* Add comment functionality later! */}
+        <fetcher.Form method="POST" className={styles.commentForm}>
+          <h3>Leave a Comment</h3>
+          <p>
+            Your email address will not be published. Required fields are marked
+            with an asterisk (*)
+          </p>
+          <div>
+            <label htmlFor="name">Name*</label>
+            <input type="text" id="name" name="name" required maxLength="34" />
+          </div>
+          <div>
+            <label htmlFor="email">Email*</label>
+            <input
+              type="text"
+              id="email"
+              name="email"
+              required
+              maxLength="254"
+            />
+          </div>
+          <div>
+            <label htmlFor="comment">Comment*</label>
+            <input
+              type="text"
+              id="comment"
+              name="comment"
+              required
+              maxLength="254"
+            />
+          </div>
+          <div>
+            <button type="submit">Submit Comment</button>
+          </div>
+        </fetcher.Form>
         <h2 className={styles.commentsHeading}>Comments</h2>
         <p>No comments yet. Start the discussion!</p>
       </div>
