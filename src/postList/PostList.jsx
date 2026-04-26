@@ -71,18 +71,20 @@ const PostList = () => {
 
   return (
     <div className={styles.postListContainer}>
-      <h2 className={styles.allHeading}>{title}</h2>
-      {posts.length > 0 ? (
-        <ul className={styles.articlesUl}>
-          {pagePosts.map((post) => (
-            <li key={post.id}>
-              <Post post={post} />
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p className={styles.emptyPara}>No posts yet.</p>
-      )}
+      <h2 className={styles.postListHeading}>{title}</h2>
+      <div className={styles.postsContainer}>
+        {posts.length > 0 ? (
+          <ul className={styles.articlesUl}>
+            {pagePosts.map((post) => (
+              <li key={post.id}>
+                <Post post={post} />
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className={styles.emptyPara}>No posts yet.</p>
+        )}
+      </div>
       <div className={styles.pageContainer}>
         <button
           className={page <= 1 ? styles.disabled : ""}

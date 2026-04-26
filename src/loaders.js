@@ -35,6 +35,7 @@ const postLoader = async ({ params }) => {
 
 const postListLoader = async ({ request }) => {
   const url = new URL(request.url);
+  const authorName = url.searchParams.get("authorName");
   const userId = url.searchParams.get("userId");
   const category = url.searchParams.get("category");
 
@@ -43,6 +44,7 @@ const postListLoader = async ({ request }) => {
     let title;
     if (userId) {
       fetchUrl = `${import.meta.env.VITE_BLOG_API_WEBSITE}/posts?userId=${userId}`;
+      title = authorName;
     } else if (category) {
       fetchUrl = `${import.meta.env.VITE_BLOG_API_WEBSITE}/posts?category=${category}`;
       title = category;
