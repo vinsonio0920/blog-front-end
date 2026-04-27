@@ -42,6 +42,8 @@ const Post = () => {
   const commentRef = useRef();
   const { result } = useLoaderData();
   const [comments, setComments] = useState([]);
+  const [commentsCount, setCommentsCount] = useState(0);
+  const [cursor, setCursor] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -60,7 +62,11 @@ const Post = () => {
 
         const result = await response.json();
         if (result.status === "success") {
-          return setComments(result.data);
+          const lastPost = result.data.comments[9];
+          setCursor(lastPost.id);
+
+          setCommentsCount(result.data.commentsCount);
+          return setComments(result.data.comments);
         } else {
           return setComments({
             status: "error",
@@ -143,6 +149,36 @@ const Post = () => {
     }));
   };
 
+  const handleCommentLoadClick = async () => {
+    const url = `${import.meta.env.VITE_BLOG_API_WEBSITE}/posts/${postData.id}/comments?cursor=${cursor}`;
+
+    try {
+      const response = await fetch(url);
+
+      const result = await response.json();
+      if (result.status === "success") {
+        const lastPost = result.data.comments[9];
+        setCursor(lastPost.id);
+
+        setCommentsCount(result.data.commentsCount);
+
+        const newComments = comments.concat(result.data.comments);
+        return setComments(newComments);
+      } else {
+        return setComments({
+          status: "error",
+          method: "load",
+        });
+      }
+    } catch (err) {
+      console.error(err.message);
+      return setComments({
+        status: "error",
+        method: "load",
+      });
+    }
+  };
+
   return (
     <div className={styles.postContainer}>
       <header>
@@ -159,9 +195,7 @@ const Post = () => {
       />
       <p className={styles.author}>
         Posted by {authorName}.{" "}
-        {comments.length < 1
-          ? "No comments yet."
-          : `${comments.length} comments`}
+        {comments.length < 1 ? "No comments yet." : `${commentsCount} comments`}
       </p>
       <p className={styles.description}>{description}</p>
       <ul className={styles.categoriesContainer}>
@@ -178,108 +212,111 @@ const Post = () => {
           <p>Write your thoughts here!</p>
         )}
       </div>
-      <div>
-        <form method="POST" className={styles.commentForm}>
-          <h3 ref={commentRef}>Leave a Comment</h3>
-          <p>
-            Your email address will not be published. Required fields are marked
-            with an asterisk (*)
-          </p>
-          <p>
-            {comments.status === "error" && comments.method === "post" && (
-              <p className={styles.formErrorPara}>
-                There was an error submitting your comment. Please try again
-                later.
-              </p>
-            )}
-          </p>
-          <section className={styles.fieldsContainer}>
+      <form method="POST" className={styles.commentForm}>
+        <h3 ref={commentRef}>Leave a Comment</h3>
+        <p>
+          Your email address will not be published. Required fields are marked
+          with an asterisk (*)
+        </p>
+        <p>
+          {comments.status === "error" && comments.method === "post" && (
+            <p className={styles.formErrorPara}>
+              There was an error submitting your comment. Please try again
+              later.
+            </p>
+          )}
+        </p>
+        <section className={styles.fieldsContainer}>
+          <div>
             <div>
-              <div>
-                <label htmlFor="name">Name*</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  maxLength="34"
-                  className={
-                    formErrors.find((error) => error.path === "name") &&
-                    styles.invalid
-                  }
-                  value={formData.name}
-                  onChange={handleInputChange}
-                />
-                {formErrors.find((error) => error.path === "name") && (
-                  <ErrorElement
-                    message={
-                      formErrors.find((error) => error.path === "name").msg
-                    }
-                  />
-                )}
-              </div>
-              <div>
-                <label htmlFor="email">Email*</label>
-                <input
-                  type="text"
-                  id="email"
-                  name="email"
-                  required
-                  maxLength="254"
-                  className={
-                    formErrors.find((error) => error.path === "email") &&
-                    styles.invalid
-                  }
-                  value={formData.email}
-                  onChange={handleInputChange}
-                />
-                {formErrors.find((error) => error.path === "email") && (
-                  <ErrorElement
-                    message={
-                      formErrors.find((error) => error.path === "email").msg
-                    }
-                  />
-                )}
-              </div>
-            </div>
-            <div className={styles.commentField}>
-              <label htmlFor="comment">Comment*</label>
-              <textarea
-                id="comment"
-                name="comment"
+              <label htmlFor="name">Name*</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
                 required
-                maxLength="254"
+                maxLength="34"
                 className={
-                  formErrors.find((error) => error.path === "content") &&
+                  formErrors.find((error) => error.path === "name") &&
                   styles.invalid
                 }
-                value={formData.comment}
+                value={formData.name}
                 onChange={handleInputChange}
               />
-              {formErrors.find((error) => error.path === "content") && (
+              {formErrors.find((error) => error.path === "name") && (
                 <ErrorElement
                   message={
-                    formErrors.find((error) => error.path === "content").msg
+                    formErrors.find((error) => error.path === "name").msg
                   }
                 />
               )}
             </div>
-          </section>
-          <section>
             <div>
-              <input type="hidden" id="postId" name="postId" value={id} />
+              <label htmlFor="email">Email*</label>
+              <input
+                type="text"
+                id="email"
+                name="email"
+                required
+                maxLength="254"
+                className={
+                  formErrors.find((error) => error.path === "email") &&
+                  styles.invalid
+                }
+                value={formData.email}
+                onChange={handleInputChange}
+              />
+              {formErrors.find((error) => error.path === "email") && (
+                <ErrorElement
+                  message={
+                    formErrors.find((error) => error.path === "email").msg
+                  }
+                />
+              )}
             </div>
-          </section>
-          <section>
-            <div>
-              <button type="submit" onClick={handleSubmitClick}>
-                Submit Comment
-              </button>
-            </div>
-          </section>
-        </form>
+          </div>
+          <div className={styles.commentField}>
+            <label htmlFor="comment">Comment*</label>
+            <textarea
+              id="comment"
+              name="comment"
+              required
+              maxLength="254"
+              className={
+                formErrors.find((error) => error.path === "content") &&
+                styles.invalid
+              }
+              value={formData.comment}
+              onChange={handleInputChange}
+            />
+            {formErrors.find((error) => error.path === "content") && (
+              <ErrorElement
+                message={
+                  formErrors.find((error) => error.path === "content").msg
+                }
+              />
+            )}
+          </div>
+        </section>
+        <section>
+          <div>
+            <input type="hidden" id="postId" name="postId" value={id} />
+          </div>
+        </section>
+        <section>
+          <div>
+            <button type="submit" onClick={handleSubmitClick}>
+              Submit Comment
+            </button>
+          </div>
+        </section>
+      </form>
+      <div>
         <h2 className={styles.commentsHeading}>Comments</h2>
         <Comments comments={comments} />
+        <button type="button" onClick={handleCommentLoadClick}>
+          Load more comments
+        </button>
       </div>
     </div>
   );
