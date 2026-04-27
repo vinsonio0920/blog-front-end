@@ -1,33 +1,58 @@
-import { useLoaderData, Link, useFetcher } from "react-router-dom";
+import { useLoaderData, Link } from "react-router-dom";
 import parse from "html-react-parser";
 import DOMPurify from "dompurify";
 import styles from "./Post.module.css";
 import { format } from "date-fns";
+import { useEffect, useRef, useState } from "react";
+
+// for comments, show error when an error occurs
+// add category form submit error
 
 const ErrorElement = ({ message }) => {
   return <p className={styles.error}>{message}</p>;
 };
 
 const Post = () => {
-  const fetcher = useFetcher();
+  const commentRef = useRef();
   const { result } = useLoaderData();
+  const [comments, setComments] = useState(null);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    comment: "",
+  });
+  const [formErrors, setFormErrors] = useState([]);
+  console.log(formErrors);
+
   const postData = result.data;
 
-  const formErrors = {};
-  fetcher.data?.errors.map((error) => {
-    formErrors[error.path] = error.msg;
-  });
+  useEffect(() => {
+    const fetchComments = async () => {
+      const url = `${import.meta.env.VITE_BLOG_API_WEBSITE}/posts/${postData.id}/comments`;
 
-  if (result.status === "error") {
-    return (
-      <div className="errorContainer">
-        <p className="errorPara">
-          There was an error fetching the post. Please try again later.
-        </p>
-        <Link to="/">Return to the homepage</Link>
-      </div>
-    );
-  }
+      try {
+        const response = await fetch(url);
+
+        const result = await response.json();
+        if (result.status === "success") {
+          return setComments(result.data);
+        } else {
+          return setComments({
+            name: "error",
+            method: "get",
+          });
+        }
+      } catch (err) {
+        console.error(err.message);
+        return setComments({
+          name: "error",
+          method: "get",
+        });
+      }
+    };
+
+    fetchComments();
+  }, [postData]);
 
   const {
     id,
@@ -41,6 +66,57 @@ const Post = () => {
   } = postData;
   const formattedDate = format(created, "MMM d, y");
   const authorName = author.name;
+
+  const handleSubmitClick = async (event) => {
+    event.preventDefault();
+    const url = `${import.meta.env.VITE_BLOG_API_WEBSITE}/posts/${postData.id}/comments`;
+
+    try {
+      const formattedComment = {
+        name: formData.name,
+        email: formData.email,
+        content: formData.comment,
+      };
+
+      const response = await fetch(url, {
+        method: "POST",
+        body: new URLSearchParams(formattedComment),
+      });
+
+      const result = await response.json();
+      if (result.status === "success") {
+        setFormData({
+          name: "",
+          email: "",
+          comment: "",
+        });
+        setFormErrors([]);
+
+        const newComments = [...comments, result.data];
+        setComments(newComments);
+
+        // move user to the comments section
+        commentRef.current.scrollIntoView();
+      } else {
+        return setFormErrors(result.errors);
+      }
+    } catch (err) {
+      console.error(err.message);
+      return setComments({
+        status: "error",
+        method: "post",
+      });
+    }
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   return (
     <div className={styles.postContainer}>
@@ -73,8 +149,8 @@ const Post = () => {
         )}
       </div>
       <div>
-        <fetcher.Form method="POST" className={styles.commentForm}>
-          <h3>Leave a Comment</h3>
+        <form method="POST" className={styles.commentForm}>
+          <h3 ref={commentRef}>Leave a Comment</h3>
           <p>
             Your email address will not be published. Required fields are marked
             with an asterisk (*)
@@ -89,10 +165,19 @@ const Post = () => {
                   name="name"
                   required
                   maxLength="34"
-                  className={formErrors["name"] && styles.invalid}
+                  className={
+                    formErrors.find((error) => error.path === "name") &&
+                    styles.invalid
+                  }
+                  value={formData.name}
+                  onChange={handleInputChange}
                 />
-                {formErrors["name"] && (
-                  <ErrorElement message={formErrors["name"]} />
+                {formErrors.find((error) => error.path === "name") && (
+                  <ErrorElement
+                    message={
+                      formErrors.find((error) => error.path === "name").msg
+                    }
+                  />
                 )}
               </div>
               <div>
@@ -103,10 +188,19 @@ const Post = () => {
                   name="email"
                   required
                   maxLength="254"
-                  className={formErrors["email"] && styles.invalid}
+                  className={
+                    formErrors.find((error) => error.path === "email") &&
+                    styles.invalid
+                  }
+                  value={formData.email}
+                  onChange={handleInputChange}
                 />
-                {formErrors["email"] && (
-                  <ErrorElement message={formErrors["email"]} />
+                {formErrors.find((error) => error.path === "email") && (
+                  <ErrorElement
+                    message={
+                      formErrors.find((error) => error.path === "email").msg
+                    }
+                  />
                 )}
               </div>
             </div>
@@ -117,10 +211,19 @@ const Post = () => {
                 name="comment"
                 required
                 maxLength="254"
-                className={formErrors["content"] && styles.invalid}
+                className={
+                  formErrors.find((error) => error.path === "content") &&
+                  styles.invalid
+                }
+                value={formData.comment}
+                onChange={handleInputChange}
               />
-              {formErrors["content"] && (
-                <ErrorElement message={formErrors["content"]} />
+              {formErrors.find((error) => error.path === "content") && (
+                <ErrorElement
+                  message={
+                    formErrors.find((error) => error.path === "content").msg
+                  }
+                />
               )}
             </div>
           </section>
@@ -131,10 +234,12 @@ const Post = () => {
           </section>
           <section>
             <div>
-              <button type="submit">Submit Comment</button>
+              <button type="submit" onClick={handleSubmitClick}>
+                Submit Comment
+              </button>
             </div>
           </section>
-        </fetcher.Form>
+        </form>
         <h2 className={styles.commentsHeading}>Comments</h2>
         <p>No comments yet. Start the discussion!</p>
       </div>

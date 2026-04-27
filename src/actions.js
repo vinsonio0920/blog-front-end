@@ -85,16 +85,10 @@ const postAction = async ({ request }) => {
     });
 
     const result = await response.json();
-
-    if (result.status === "success") {
-      // reload page to the comments section
-      redirect("");
-    } else {
-      return result;
-    }
+    return result;
   } catch (err) {
     console.error(err.message);
   }
 };
 
-export { signUpAction, signInAction, postAction };
+export { signUpAction, signInAction };
