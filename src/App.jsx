@@ -1,10 +1,20 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import "./App.css";
 import { Header } from "./header/Header";
 import { Footer } from "./footer/Footer";
 import { JwtContext } from "./jwt-context";
 import { jwtDecode } from "jwt-decode";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 function App() {
   const [jwtToken, setJwtToken] = useState(localStorage.getItem("jwtToken"));
@@ -24,6 +34,7 @@ function App() {
 
   return (
     <JwtContext value={value}>
+      <ScrollToTop />
       <Header />
       <main>
         <Outlet />
