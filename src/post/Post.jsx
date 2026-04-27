@@ -23,15 +23,15 @@ const Comments = ({ comments }) => {
   return (
     <ul>
       {comments.map((comment) => (
-        <li key={comment.id}>
+        <li key={comment.id} className={styles.commentLi}>
           <header>
-            <p>{comment.name}</p>
-            <p>
+            <p className={styles.commentName}>{comment.name}</p>
+            <p className={styles.commentDate}>
               {format(comment.created, "MMMM d y, ")} at{" "}
               {format(comment.created, "h:mm a")}
             </p>
           </header>
-          <p>{comment.content}</p>
+          <p className={styles.commentContent}>{comment.content}</p>
         </li>
       ))}
     </ul>

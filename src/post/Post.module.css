@@ -129,6 +129,40 @@
   background-color: #7b7b7b;
 }
 
+/* Comment List */
+
+.commentLi * {
+  margin: 0;
+}
+
+.commentLi {
+  border-bottom: 1px solid rgb(194, 194, 194);
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.commentLi:first-of-type {
+  margin-top: 0.5rem;
+}
+
+.commentName {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.commentDate {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #434343;
+  margin-bottom: 0.75rem;
+}
+
+.commentContent {
+  font-size: 1.1rem;
+}
+
+/* Error */
+
 .invalid {
   outline: 1px solid red;
   border: none;
