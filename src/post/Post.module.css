@@ -161,6 +161,30 @@
   font-size: 1.1rem;
 }
 
+.commentEndPara {
+  text-align: center;
+  color: #434343;
+  margin-top: 1rem;
+}
+
+.loadButton {
+  display: block;
+  font-size: 1.1rem;
+  background-color: #ececec;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 2rem;
+  margin: 1rem auto auto auto;
+}
+
+.loadButton:hover {
+  background-color: #eeeeee;
+}
+
+.loadButton:active {
+  background-color: #eeeeee;
+}
+
 /* Error */
 
 .invalid {
@@ -174,8 +198,13 @@
   margin: -0.5rem 0 0.75rem 0 !important;
 }
 
-.commentsErrorPara {
+.commentsErrorPara,
+.commentsLoadErrorPara {
   color: red;
+}
+
+.commentsLoadErrorPara {
+  text-align: center;
 }
 
 .formErrorPara {

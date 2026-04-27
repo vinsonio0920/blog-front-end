@@ -62,7 +62,10 @@ const Post = () => {
 
         const result = await response.json();
         if (result.status === "success") {
-          const lastPost = result.data.comments[9];
+          if (result.data.comments.length <= 0) return;
+
+          const lastPost =
+            result.data.comments[result.data.comments.length - 1];
           setCursor(lastPost.id);
 
           setCommentsCount(result.data.commentsCount);
@@ -152,12 +155,14 @@ const Post = () => {
   const handleCommentLoadClick = async () => {
     const url = `${import.meta.env.VITE_BLOG_API_WEBSITE}/posts/${postData.id}/comments?cursor=${cursor}`;
 
+    if (comments.length >= commentsCount) return;
+
     try {
       const response = await fetch(url);
 
       const result = await response.json();
       if (result.status === "success") {
-        const lastPost = result.data.comments[9];
+        const lastPost = result.data.comments[result.data.comments.length - 1];
         setCursor(lastPost.id);
 
         setCommentsCount(result.data.commentsCount);
@@ -165,14 +170,14 @@ const Post = () => {
         const newComments = comments.concat(result.data.comments);
         return setComments(newComments);
       } else {
-        return setComments({
+        return setCursor({
           status: "error",
           method: "load",
         });
       }
     } catch (err) {
       console.error(err.message);
-      return setComments({
+      return setCursor({
         status: "error",
         method: "load",
       });
@@ -314,9 +319,23 @@ const Post = () => {
       <div>
         <h2 className={styles.commentsHeading}>Comments</h2>
         <Comments comments={comments} />
-        <button type="button" onClick={handleCommentLoadClick}>
-          Load more comments
-        </button>
+        {cursor?.status === "error" && (
+          <p className={styles.commentsLoadErrorPara}>
+            There was an error loading the comments. Please try again later.
+          </p>
+        )}
+        {comments.length >= commentsCount && comments.length > 0 && (
+          <p className={styles.commentEndPara}>End of comments.</p>
+        )}
+        {comments.length < commentsCount && comments.length > 0 && (
+          <button
+            type="button"
+            onClick={handleCommentLoadClick}
+            className={styles.loadButton}
+          >
+            Load more comments
+          </button>
+        )}
       </div>
     </div>
   );
