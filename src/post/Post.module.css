@@ -140,6 +140,15 @@
   margin: -0.5rem 0 0.75rem 0 !important;
 }
 
+.commentsErrorPara {
+  color: red;
+}
+
+.formErrorPara {
+  color: red !important;
+  margin: -0.5rem 0 1.5rem 0 !important;
+}
+
 @media (min-width: 650px) {
   .commentForm {
     padding: 1.5rem;

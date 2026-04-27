@@ -5,24 +5,34 @@ import styles from "./Post.module.css";
 import { format } from "date-fns";
 import { useEffect, useRef, useState } from "react";
 
-// for comments, show error when an error occurs
-// add category form submit error
-
 const ErrorElement = ({ message }) => {
   return <p className={styles.error}>{message}</p>;
+};
+
+const Comments = ({ comments }) => {
+  if (comments.status === "error" && comments.method === "get") {
+    return (
+      <p className={styles.commentsErrorPara}>
+        There was an error fetching the comments. Please try again later.
+      </p>
+    );
+  } else if (comments.length < 1) {
+    return <p>No comments yet. Start the discussion!</p>;
+  }
+
+  return <ul></ul>;
 };
 
 const Post = () => {
   const commentRef = useRef();
   const { result } = useLoaderData();
-  const [comments, setComments] = useState(null);
+  const [comments, setComments] = useState([]);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     comment: "",
   });
   const [formErrors, setFormErrors] = useState([]);
-  console.log(formErrors);
 
   const postData = result.data;
 
@@ -38,14 +48,14 @@ const Post = () => {
           return setComments(result.data);
         } else {
           return setComments({
-            name: "error",
+            status: "error",
             method: "get",
           });
         }
       } catch (err) {
         console.error(err.message);
         return setComments({
-          name: "error",
+          status: "error",
           method: "get",
         });
       }
@@ -132,7 +142,12 @@ const Post = () => {
         alt="Article image"
         className={styles.image}
       />
-      <p className={styles.author}>Posted by {authorName}. No comments yet.</p>
+      <p className={styles.author}>
+        Posted by {authorName}.{" "}
+        {comments.length < 1
+          ? "No comments yet."
+          : `${comments.length} comments`}
+      </p>
       <p className={styles.description}>{description}</p>
       <ul className={styles.categoriesContainer}>
         {categories.map((category) => (
@@ -154,6 +169,14 @@ const Post = () => {
           <p>
             Your email address will not be published. Required fields are marked
             with an asterisk (*)
+          </p>
+          <p>
+            {comments.status === "error" && comments.method === "post" && (
+              <p className={styles.formErrorPara}>
+                There was an error submitting your comment. Please try again
+                later.
+              </p>
+            )}
           </p>
           <section className={styles.fieldsContainer}>
             <div>
@@ -241,7 +264,7 @@ const Post = () => {
           </section>
         </form>
         <h2 className={styles.commentsHeading}>Comments</h2>
-        <p>No comments yet. Start the discussion!</p>
+        <Comments comments={comments} />
       </div>
     </div>
   );
