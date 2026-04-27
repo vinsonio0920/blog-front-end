@@ -20,7 +20,22 @@ const Comments = ({ comments }) => {
     return <p>No comments yet. Start the discussion!</p>;
   }
 
-  return <ul></ul>;
+  return (
+    <ul>
+      {comments.map((comment) => (
+        <li key={comment.id}>
+          <header>
+            <p>{comment.name}</p>
+            <p>
+              {format(comment.created, "MMMM d y, ")} at{" "}
+              {format(comment.created, "h:mm a")}
+            </p>
+          </header>
+          <p>{comment.content}</p>
+        </li>
+      ))}
+    </ul>
+  );
 };
 
 const Post = () => {
