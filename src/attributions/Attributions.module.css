@@ -1,0 +1,30 @@
+.attributionsContainer {
+  line-height: 1.5;
+  max-width: 75ch;
+  min-height: calc(100vh - 10rem);
+  margin: 3rem clamp(1rem, 6vw, 5rem);
+}
+
+.title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 1rem;
+}
+
+.attributionsContainer ul {
+  list-style-type: disc;
+}
+
+.attributionsContainer li {
+  margin-bottom: 1rem;
+}
+
+.attributionsContainer a {
+  color: #00a7e1;
+}
+
+@media (min-width: 860px) {
+  .attributionsContainer {
+    margin: 3rem auto;
+  }
+}

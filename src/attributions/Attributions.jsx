@@ -1,7 +1,9 @@
+import styles from "./Attributions.module.css";
+
 const Attributions = () => {
   return (
-    <>
-      <h1>Attributions</h1>
+    <div className={styles.attributionsContainer}>
+      <h1 className={styles.title}>Attributions</h1>
       <ul>
         <li>
           Empty articles construction image by{" "}
@@ -94,7 +96,7 @@ const Attributions = () => {
           </a>
         </li>
       </ul>
-    </>
+    </div>
   );
 };
 
