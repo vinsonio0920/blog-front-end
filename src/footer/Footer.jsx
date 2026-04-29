@@ -17,13 +17,17 @@ const Footer = () => {
             <p className={styles.socialPara}>See me around!</p>
             <ul className={styles.socialLinks}>
               <li>
-                <Link to="">
+                <a
+                  href="https://github.com/vinsonio0920"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img
                     src={githubSvg}
                     width="50"
                     alt="My GitHub account link"
                   />
-                </Link>
+                </a>
               </li>
               <li>
                 <Link to="">
@@ -35,23 +39,31 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="">
+                <a
+                  href="https://stackoverflow.com/users/31326408/vinson-he"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img
                     src={stackoverflowSvg}
                     width="50"
                     alt="My StackOverflow account link"
                   />
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to="">
+                <a
+                  href="https://www.roblox.com/users/9169918282/profile"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img
                     src={robloxSvg}
                     width="50"
                     alt="Link to my roblox games"
                     className="roblox-svg"
                   />
-                </Link>
+                </a>
               </li>
               <li>
                 <Link to="">
@@ -73,13 +85,15 @@ const Footer = () => {
                 <Link to="/about">About</Link>
               </li>
               <li>
-                <Link to="/contact">Contact</Link>
+                <Link to="/posts?category=journal">Journals</Link>
               </li>
               <li>
-                <Link to="/roadmap">Roadmap</Link>
+                <Link to="/posts">Articles</Link>
               </li>
               <li>
-                <Link to="/current">Current Projects</Link>
+                <Link to="posts?userId=3&authorName=Vinsonius">
+                  Blogs by Vinson
+                </Link>
               </li>
             </ul>
           </li>
